@@ -15,15 +15,30 @@ using System.Diagnostics.Metrics;
 public class Grid {
     public List<StationaryShape> tiles = new List<StationaryShape>();
     public IBaseImage texture = new Image("SandGame.Assets.blue.png");
-    public Grid(Vector2 position, int size) {
+
+    // Constructor for asymmetrical grid:
+    public Grid(Vector2 gridPosition, Vector2 tileExtend, Vector2 tileSpacing, int tileAmountX, int tileAmountY) {
         float xCounter = 0.0f;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < tileAmountX; i++) {
             float yCounter = 0.0f;
-            for (int j = 0; j < size; j++) {
-                tiles.Add(new StationaryShape(new Vector2(position.X + xCounter, position.Y + yCounter), new Vector2(0.1f, 0.1f)));
-                yCounter += 0.11f;
+            for (int j = 0; j < tileAmountY; j++) {
+                tiles.Add(new StationaryShape(new Vector2(gridPosition.X + xCounter, gridPosition.Y + yCounter), tileExtend));
+                yCounter += tileExtend.Y + tileSpacing.Y;
             }
-            xCounter += 0.11f;
+            xCounter += tileExtend.X + tileSpacing.X;
+        }
+    }
+
+    // Constructor for symmetrical grid:
+    public Grid(Vector2 gridPosition, float tileExtend, float tileSpacing, int tileAmount) {
+        float xCounter = 0.0f;
+        for (int i = 0; i < tileAmount; i++) {
+            float yCounter = 0.0f;
+            for (int j = 0; j < tileAmount; j++) {
+                tiles.Add(new StationaryShape(new Vector2(gridPosition.X + xCounter, gridPosition.Y + yCounter), new Vector2(tileExtend, tileExtend)));
+                yCounter += tileExtend + tileSpacing;
+            }
+            xCounter += tileExtend + tileSpacing;
         }
     }
 

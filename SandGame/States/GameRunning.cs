@@ -13,17 +13,21 @@ using DIKUArcade.Input;
 public class GameRunning : IGameState {
     private StateMachine stateMachine;
     private Image backGroundImage;
-    private Grid grid = new Grid(new Vector2(0.1f, 0.1f), 3);
+    private Grid grid = new Grid(new Vector2(0.1f, 0.1f), new Vector2(0.1f, 0.2f), new Vector2(0.01f, 0.01f), 4, 2);
+    private Grid grid2 = new Grid(new Vector2(0.6f, 0.1f), 0.1f, 0.01f, 2);
 
     public GameRunning(StateMachine stateMachine) {
         this.stateMachine = stateMachine;
+        backGroundImage = new Image("SandGame.Assets.pink.png");
     }
 
     public void Update() {
         
     }
     public void Render(WindowContext context) {
+        backGroundImage.Render(context, new StationaryShape(0.0f, 0.0f, 1.0f, 1.0f));
         grid.RenderGrid(context);
+        grid2.RenderGrid(context);
     }
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
         switch (action, key) {
