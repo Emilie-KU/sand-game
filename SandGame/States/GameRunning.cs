@@ -13,6 +13,7 @@ using DIKUArcade.Input;
 public class GameRunning : IGameState {
     private StateMachine stateMachine;
     private Image backGroundImage;
+    private Grid grid = new Grid(new Vector2(0.1f, 0.1f), 3);
 
     public GameRunning(StateMachine stateMachine) {
         this.stateMachine = stateMachine;
@@ -22,7 +23,7 @@ public class GameRunning : IGameState {
         
     }
     public void Render(WindowContext context) {
-        
+        grid.RenderGrid(context);
     }
     public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
         switch (action, key) {
