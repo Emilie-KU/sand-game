@@ -21,7 +21,8 @@ public class MainMenu : IGameState {
         this.stateMachine = stateMachine;
         backGroundImage = new Image("SandGame.Assets.pink.png");
         title = new Text("GALAGA", new Vector2(0.28f, 0.68f), 1.0f);
-        menuButtons = new Text[] {new Text("New Game", new Vector2(0.35f, 0.55f), 0.5f), new Text("Quit", new Vector2(0.35f, 0.45f), 0.5f)};
+        menuButtons = new Text[] {  new Text("Play Game", new Vector2(0.35f, 0.55f), 0.5f), 
+                                    new Text("Quit", new Vector2(0.35f, 0.45f), 0.5f)};
     }
 
     public void Update() {
@@ -48,9 +49,9 @@ public class MainMenu : IGameState {
                 currentButton = (currentButton + 1) % menuButtons.Length;
                 break;
             case (KeyboardAction.KeyPress, KeyboardKey.Enter):
-                /*if (currentButton == 0) {
-                    stateMachine.ActiveState = new GameRunning(stateMachine);
-                }*/
+                if (currentButton == 0) {
+                    stateMachine.ActiveState = new LevelMenu(stateMachine);
+                }
                 if (currentButton == 1) {
                     Environment.Exit(1);
                 }
