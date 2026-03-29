@@ -50,6 +50,9 @@ public class LevelMenu : IGameState {
                 currentButton = (currentButton + 1) % levelButtons.Length;
                 break;
             case (KeyboardAction.KeyPress, KeyboardKey.Enter):
+                if (currentButton == 0) {
+                    stateMachine.ActiveState = new GameRunning(stateMachine);
+                }
                 if (currentButton == levelButtons.Length - 1) {
                     stateMachine.ActiveState = new MainMenu(stateMachine);
                 }
