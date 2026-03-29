@@ -19,12 +19,12 @@ public class LevelMenu : IGameState {
     public LevelMenu(StateMachine stateMachine) {
         this.stateMachine = stateMachine;
         backGroundImage = new Image("SandGame.Assets.pink.png");
-        levelButtons = new Text[] { new Text("Level 1", new Vector2(0.35f, 0.7f), 0.5f), 
-                                    new Text("Level 2", new Vector2(0.35f, 0.6f), 0.5f),
-                                    new Text("Level 3", new Vector2(0.35f, 0.5f), 0.5f),
-                                    new Text("Level 4", new Vector2(0.35f, 0.4f), 0.5f),
-                                    new Text("Level 5", new Vector2(0.35f, 0.3f), 0.5f),
-                                    new Text("Go back", new Vector2(0.35f, 0.2f), 0.5f)};
+        levelButtons = new Text[] { new Text("Level 1", new Vector2(0.4f, 0.7f), 0.5f), 
+                                    new Text("Level 2", new Vector2(0.4f, 0.6f), 0.5f),
+                                    new Text("Level 3", new Vector2(0.4f, 0.5f), 0.5f),
+                                    new Text("Level 4", new Vector2(0.4f, 0.4f), 0.5f),
+                                    new Text("Level 5", new Vector2(0.4f, 0.3f), 0.5f),
+                                    new Text("Go back", new Vector2(0.4f, 0.2f), 0.5f)};
     }
 
     public void Update() {
