@@ -13,7 +13,7 @@ using DIKUArcade.Input;
 public class GameRunning : IGameState {
     private StateMachine stateMachine;
     private Image backGroundImage;
-    private Grid grid = new Grid(new Vector2(0.1f, 0.1f), new Vector2(0.1f, 0.2f), new Vector2(0.01f, 0.01f), 4, 2);
+    private Grid grid = new Grid(new Vector2(0.1f, 0.1f), new Vector2(0.1f, 0.2f), new Vector2(0.01f, 0.02f), 4, 2);
     private Grid grid2 = new Grid(new Vector2(0.6f, 0.1f), 0.1f, 0.01f, 2);
 
     public GameRunning(StateMachine stateMachine) {
