@@ -9,8 +9,6 @@ using DIKUArcade.Input;
 using DIKUArcade.Entities;
 using DIKUArcade.Graphics;
 using DIKUArcade.Events;
-using System.Reflection;
-using System.Diagnostics.Metrics;
 
 public class Grid {
     public List<List<StationaryShape>> tiles = new List<List<StationaryShape>>();
