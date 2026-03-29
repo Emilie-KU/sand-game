@@ -1,0 +1,57 @@
+namespace SandGame.States;
+
+using System;
+using System.Numerics;
+using DIKUArcade;
+using DIKUArcade.Entities;
+using DIKUArcade.Events;
+using DIKUArcade.Fonts;
+using DIKUArcade.Graphics;
+using DIKUArcade.GUI;
+using DIKUArcade.Input;
+
+public class GamePause : IGameState {
+    private Text[] menuButtons;
+    private int currentButton = 0;
+    private StateMachine stateMachine;
+    private Image backGroundImage;
+
+    public GamePause(StateMachine stateMachine) {
+        this.stateMachine = stateMachine;
+        backGroundImage = new Image("SandGame.Assets.pink.png");
+        menuButtons = new Text[] {new Text("Continue", new Vector2(0.35f, 0.55f), 0.5f), new Text("Main Menu", new Vector2(0.35f, 0.45f), 0.5f)};
+    }
+
+    public void Update() {
+        menuButtons[currentButton].SetColor(0, 0, 255);
+        for(int i = 0; i < menuButtons.Length; i++) {
+            if (i != currentButton) {
+                menuButtons[i].SetColor(255, 255, 255);
+            }
+        }
+    }
+    public void Render(WindowContext context) {
+        backGroundImage.Render(context, new StationaryShape(0.0f, 0.0f, 1.0f, 1.0f));
+        foreach (Text button in menuButtons) {
+            button.Render(context);
+        }
+    }
+    public void HandleKeyEvent(KeyboardAction action, KeyboardKey key) {
+        switch (action, key) {
+            case (KeyboardAction.KeyPress, KeyboardKey.Up):
+                currentButton = (currentButton + menuButtons.Length - 1) % menuButtons.Length; //added additional menuButtons.Length, to inforce that the remainder isn't negative in case currentButton is 0.
+                break;
+            case (KeyboardAction.KeyPress, KeyboardKey.Down):
+                currentButton = (currentButton + 1) % menuButtons.Length;
+                break;
+            case (KeyboardAction.KeyPress, KeyboardKey.Enter):
+                if (currentButton == 0) {
+                    stateMachine.ActiveState = stateMachine.PreviousState;
+                }
+                if (currentButton == 1) {
+                    stateMachine.ActiveState = new MainMenu(stateMachine);
+                }
+                break;
+        }
+    }
+}
