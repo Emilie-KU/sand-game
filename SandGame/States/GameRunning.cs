@@ -21,11 +21,12 @@ public class GameRunning : IGameState {
         this.stateMachine = stateMachine;
         backGroundImage = new Image("SandGame.Assets.pink.png");
         unit.CenterX();
+        unit.MoveToY(0.8f);
     }
 
     public void Update() {
-        
     }
+    
     public void Render(WindowContext context) {
         backGroundImage.Render(context, new StationaryShape(0.0f, 0.0f, 1.0f, 1.0f));
         grid.RenderGrid(context);
